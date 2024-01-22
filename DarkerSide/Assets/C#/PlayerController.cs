@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
 
+  
+
 
     private void Start()
     {
@@ -64,14 +66,16 @@ public class PlayerController : MonoBehaviour
             thrustForce = 0;
         }
     }
-    
-
-
-     
-    
-
 
     
+
+
+
+
+
+
+
+
 
 
 }
