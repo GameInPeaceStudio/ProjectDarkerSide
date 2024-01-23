@@ -35,11 +35,19 @@ public class PlayerController : MonoBehaviour
 
             // Rotasyonu uygula
             rb.SetRotation(rotation);
+            rb.angularVelocity = 0f;
 
-            
-            
+            isMoving = true;
             ///
 
+        }
+        else
+        {
+            if (isMoving)
+            {
+                rb.angularVelocity = 0f;
+                isMoving = false;
+            }
         }
         
 
