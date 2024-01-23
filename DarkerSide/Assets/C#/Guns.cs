@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem; 
 public class Guns : MonoBehaviour
 {
     public float rotationSpeed = 5f;
@@ -12,6 +12,7 @@ public class Guns : MonoBehaviour
     public float lastFireTime;
     public GameObject bulletPrefab;
     public GameObject BulletSpawnPosition;
+
     
 
     private Rigidbody2D Bulletrb;
@@ -22,7 +23,7 @@ public class Guns : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         RotateTowards();
         Fire();
@@ -48,15 +49,36 @@ public class Guns : MonoBehaviour
 
         }
 
+        // Sag Joystikten input aliyorum.
+        float horizontalAim = InputSystem.GetDevice<Gamepad>().rightStick.x.ReadValue();
+        float verticalAim = InputSystem.GetDevice<Gamepad>().rightStick.y.ReadValue();
+
+        Vector3 targetDirection = new Vector3(horizontalAim, verticalAim, 0f);
+
+        if (targetDirection!= Vector3.zero)
+        {
+            float angle = Mathf.Atan2(-targetDirection.x, targetDirection.y) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+        }
+        
 
     }
     void Fire()
     {
+
+        if (Input.GetButton("Fire1") && Time.time > lastFireTime + fireRate)
+        {
+            SpawnBullet();
+            lastFireTime = Time.time;
+        }
+        /*
         if (Input.GetMouseButton(0)&&Time.time>lastFireTime+fireRate)
         {
            SpawnBullet();
            lastFireTime = Time.time;
         }
+        */
     }
 
     void SpawnBullet()

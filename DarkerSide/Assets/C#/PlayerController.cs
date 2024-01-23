@@ -1,14 +1,12 @@
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerController : MonoBehaviour
 {
     // Döneceğimiz hız
     public float rotationSpeed = 5f;
     public float thrustForce = 1f;
-    public float thrustForceMin = 1f;
-    public float thrustForceMax = 5f;
 
+    bool isMoving = false;
 
     private Rigidbody2D rb;
 
@@ -19,63 +17,102 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); 
     }
-    void Update()
+    void FixedUpdate()
     {
-        RotateTowards();
         AddForce();
-        
     }
 
-    void RotateTowards()
+    void RotateCharacter(Vector2 moveDirection)
     {
 
-        if (Input.GetMouseButton(1))
+        if (moveDirection != Vector2.zero)
         {
-            // Fare pozisyonunu al
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            // Hareket vektörüne göre karakterin rotasyonunu belirle
+            float targetRotation = Mathf.Atan2(-moveDirection.x, moveDirection.y) * Mathf.Rad2Deg;
 
-            Vector3 direction = mousePosition - transform.position;
+            // Dönüşü yumuşatmak için slerp kullan
+            float rotation = Mathf.LerpAngle(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            direction.z = 0f; // 2D oyun olduğu için z eksenini sıfıra ayarladim
+            // Rotasyonu uygula
+            rb.SetRotation(rotation);
 
-            // Hedefe doğru dönme işlemi
-
-            float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+            
+            
+            ///
 
         }
-            
+        
+
+
 
     }
     void AddForce()
     {
-        if (Input.GetMouseButton(1))
-        {
-            // uzay gemisine itme gucu ekledim
+        // dikey ve yatay inputlar
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
-            rb.AddForce(transform.up * thrustForce * Time.deltaTime);
-            if (thrustForce <= thrustForceMax)
-            {
-                thrustForce++;
-            }
-        }
-        // sag mouse tiklanmadiginda itme gucu yok.
-        else
-        {
-            thrustForce = 0;
-        }
+        Vector2 moveDirection=new Vector2(horizontalInput, verticalInput).normalized;
+
+        rb.AddForce(moveDirection* thrustForce);
+     
+
+        RotateCharacter(moveDirection);
+
+
+
+
+
+
+
     }
 
-    
-
-
-
-
-
-
-
-
-
+  
 
 }
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+/*
+ * mouse pozisyonuna dogru bak
+ * 
+if (Input.GetMouseButton(1))
+{
+    // Fare pozisyonunu al
+    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+    Vector3 direction = mousePosition - transform.position;
+
+    direction.z = 0f; // 2D oyun olduğu için z eksenini sıfıra ayarladim
+
+    // Hedefe doğru dönme işlemi
+
+    float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
+    Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+
+}
+*/
+
+
+///////////////////////////////////////////////////////////////////////////
+/* Add force
+ *
+ if (Input.GetMouseButton(1))
+ {
+     // uzay gemisine itme gucu ekledim
+
+     rb.AddForce(transform.up * thrustForce * Time.deltaTime);
+     if (thrustForce <= thrustForceMax)
+     {
+         thrustForce++;
+     }
+ }
+ // sag mouse tiklanmadiginda itme gucu yok.
+ else
+ {
+     thrustForce = 0;
+ }
+
+ */
