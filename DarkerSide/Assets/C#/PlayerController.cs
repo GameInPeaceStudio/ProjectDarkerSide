@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float thrustForce = 1f;
     public float fullSpeedForce = 1f;
     public float maxSpeed = 5f;
+    public float dashDistance = 50f;
 
     bool isMoving = false;
 
@@ -19,29 +21,50 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); 
     }
+
+    private void Update()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector2 moveDirection = new Vector2(horizontalInput, verticalInput).normalized;
+       
+
+
+        Skills(moveDirection);
+    }
     void FixedUpdate()
     {
-        AddForce();
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector2 moveDirection = new Vector2(horizontalInput, verticalInput).normalized;
+
+        
+        if (moveDirection != Vector2.zero)
+        {
+            RotateCharacter(moveDirection);
+            
+            AddForce(moveDirection);
+        }
+
     }
+
 
     void RotateCharacter(Vector2 moveDirection)
     {
 
         if (moveDirection != Vector2.zero)
         {
-            // Hareket vektörüne göre karakterin rotasyonunu belirle
+           
             float targetRotation = Mathf.Atan2(-moveDirection.x, moveDirection.y) * Mathf.Rad2Deg;
-
-            // Dönüşü yumuşatmak için slerp kullan
             float rotation = Mathf.LerpAngle(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            // Rotasyonu uygula
             rb.SetRotation(rotation);
             rb.angularVelocity = 0f;
 
             isMoving = true;
-            ///
-
+           
         }
         else
         {
@@ -49,49 +72,47 @@ public class PlayerController : MonoBehaviour
             {
                 rb.angularVelocity = 0f;
                 isMoving = false;
+
             }
         }
 
     }
-    void AddForce()
+    void AddForce(Vector2 moveDirection)
     {
-        // dikey ve yatay inputlar
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector2 moveDirection=new Vector2(horizontalInput, verticalInput).normalized;
-
-        // moveDirection belirlendigine göre artik Force ekleyebiliriz
         if (rb.velocity.magnitude < maxSpeed)
         {
             rb.AddForce(moveDirection * thrustForce);
-
+            
             if (Input.GetButton("fullSpeed"))
             {
                 rb.AddForce(moveDirection * (thrustForce + fullSpeedForce));
+
+               
             }
         }
         else if (rb.velocity.magnitude > maxSpeed)
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
-            //Debug.Log("MaxSpeed");
+            
+
         }
         else
         {
             rb.AddForce(moveDirection * thrustForce);
-        }
 
-        if (Input.GetButtonDown("Dash"))
-        {
-            rb.MovePosition(rb.position + moveDirection.normalized * 50f);
-            Debug.Log("Dash");
         }
-        
-     
-        RotateCharacter(moveDirection);
 
     }
 
+    void Skills(Vector2 moveDirection)
+    {
+
+        if (Input.GetButtonDown("Dash"))
+        {
+            rb.MovePosition(rb.position + moveDirection.normalized * dashDistance);
+            Debug.Log("Dash");
+        }
+    }
   
 
 }
