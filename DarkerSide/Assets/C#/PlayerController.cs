@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     // Döneceğimiz hız
     public float rotationSpeed = 5f;
     public float thrustForce = 1f;
+    public float fullSpeedForce = 1f;
 
     bool isMoving = false;
 
@@ -49,9 +50,6 @@ public class PlayerController : MonoBehaviour
                 isMoving = false;
             }
         }
-        
-
-
 
     }
     void AddForce()
@@ -62,16 +60,25 @@ public class PlayerController : MonoBehaviour
 
         Vector2 moveDirection=new Vector2(horizontalInput, verticalInput).normalized;
 
-        rb.AddForce(moveDirection* thrustForce);
+        // moveDirection belirlendigine göre artik Force ekleyebiliriz
+       
+
+        if(Input.GetButton("fullSpeed"))
+        {
+            rb.AddForce(moveDirection * (thrustForce + fullSpeedForce));
+        }
+
+        if(Input.GetButtonDown("Dash"))
+        {
+            rb.MovePosition(rb.position + moveDirection.normalized * 50f);
+            Debug.Log("Dash");
+        }
+        else
+        {
+            rb.AddForce(moveDirection * thrustForce);
+        }
      
-
         RotateCharacter(moveDirection);
-
-
-
-
-
-
 
     }
 

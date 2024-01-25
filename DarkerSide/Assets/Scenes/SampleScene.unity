@@ -359,6 +359,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 529629617748355171, guid: ae839d22333495c4491198003fc00dec, type: 3}
       propertyPath: thrustForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 529629617748355171, guid: ae839d22333495c4491198003fc00dec, type: 3}
+      propertyPath: fullSpeedForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 529629617748355171, guid: ae839d22333495c4491198003fc00dec, type: 3}
+      propertyPath: lightSpeedForce
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 529629617748355175, guid: ae839d22333495c4491198003fc00dec, type: 3}

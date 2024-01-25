@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; 
 public class Guns : MonoBehaviour
@@ -32,7 +30,7 @@ public class Guns : MonoBehaviour
     void RotateTowards()
     {
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             // Fare pozisyonunu al
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -49,18 +47,26 @@ public class Guns : MonoBehaviour
 
         }
 
-        // Sag Joystikten input aliyorum.
-        float horizontalAim = InputSystem.GetDevice<Gamepad>().rightStick.x.ReadValue();
-        float verticalAim = InputSystem.GetDevice<Gamepad>().rightStick.y.ReadValue();
+        Gamepad gamepad = InputSystem.GetDevice<Gamepad>();
 
-        Vector3 targetDirection = new Vector3(horizontalAim, verticalAim, 0f);
-
-        if (targetDirection!= Vector3.zero)
+        if (gamepad !=null)
         {
-            float angle = Mathf.Atan2(-targetDirection.x, targetDirection.y) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+            float horizontalAim = InputSystem.GetDevice<Gamepad>().rightStick.x.ReadValue();
+            float verticalAim = InputSystem.GetDevice<Gamepad>().rightStick.y.ReadValue();
+
+            Vector2 aimDirection = new Vector3(horizontalAim, verticalAim).normalized;
+
+
+            if (aimDirection != Vector2.zero)
+            {
+
+                float angle = Mathf.Atan2(-aimDirection.x, aimDirection.y) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+            }
         }
+        // Sag Joystikten input aliyorum.
+        
         
 
     }
