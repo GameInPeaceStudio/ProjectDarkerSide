@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 5f;
     public float thrustForce = 1f;
     public float fullSpeedForce = 1f;
+    public float maxSpeed = 5f;
 
     bool isMoving = false;
 
@@ -61,22 +62,31 @@ public class PlayerController : MonoBehaviour
         Vector2 moveDirection=new Vector2(horizontalInput, verticalInput).normalized;
 
         // moveDirection belirlendigine göre artik Force ekleyebiliriz
-       
-
-        if(Input.GetButton("fullSpeed"))
+        if (rb.velocity.magnitude < maxSpeed)
         {
-            rb.AddForce(moveDirection * (thrustForce + fullSpeedForce));
+            rb.AddForce(moveDirection * thrustForce);
+
+            if (Input.GetButton("fullSpeed"))
+            {
+                rb.AddForce(moveDirection * (thrustForce + fullSpeedForce));
+            }
         }
-
-        if(Input.GetButtonDown("Dash"))
+        else if (rb.velocity.magnitude > maxSpeed)
         {
-            rb.MovePosition(rb.position + moveDirection.normalized * 50f);
-            Debug.Log("Dash");
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+            //Debug.Log("MaxSpeed");
         }
         else
         {
             rb.AddForce(moveDirection * thrustForce);
         }
+
+        if (Input.GetButtonDown("Dash"))
+        {
+            rb.MovePosition(rb.position + moveDirection.normalized * 50f);
+            Debug.Log("Dash");
+        }
+        
      
         RotateCharacter(moveDirection);
 
