@@ -178,7 +178,6 @@ GameObject:
   m_Component:
   - component: {fileID: 529629616979832189}
   - component: {fileID: 529629616979832162}
-  - component: {fileID: 1540750486101604386}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -244,7 +243,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0.8916427, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.020871086, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -254,22 +253,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1540750486101604386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 529629616979832188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c076bb10c47049c42af3ecdf3ffc06e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  bulletSpeed: 10
-  bulletPrefab: {fileID: 3463957541988351427, guid: df868b817b752a748bb7ebf3138e6c6d, type: 3}
-  BulletSpawnPosition: {fileID: 1055587815}
 --- !u!1 &529629617748355170
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +268,7 @@ GameObject:
   - component: {fileID: 529629617748355171}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +333,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.5849056, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -375,12 +358,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &529629617748355168
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -422,9 +405,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
-  thrustForce: 1
-  thrustForceMin: 1
-  thrustForceMax: 500
+  thrustForce: 25
+  fullSpeedForce: 100
+  speedLimiter: 150
+  dashDistance: 100
 --- !u!1 &529629618353363148
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529629618353363149}
   - component: {fileID: 529629618353363186}
+  - component: {fileID: 973444577}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -510,6 +495,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &973444577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529629618353363148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c076bb10c47049c42af3ecdf3ffc06e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
+  bulletSpeed: 150
+  fireRate: 0.5
+  lastFireTime: 0
+  bulletPrefab: {fileID: 3463957541988351427, guid: df868b817b752a748bb7ebf3138e6c6d, type: 3}
+  BulletSpawnPosition: {fileID: 1055587815}
 --- !u!1 &529629618459775078
 GameObject:
   m_ObjectHideFlags: 0

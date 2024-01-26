@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,14 +8,14 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 5f;
     public float thrustForce = 1f;
     public float fullSpeedForce = 1f;
-    public float maxSpeed = 5f;
+    public float speedLimiter = 5f;
     public float dashDistance = 50f;
 
     bool isMoving = false;
 
     private Rigidbody2D rb;
 
-  
+    
 
 
     private void Start()
@@ -35,6 +36,9 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        // triggers
+        
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -77,29 +81,36 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    
     void AddForce(Vector2 moveDirection)
     {
-        if (rb.velocity.magnitude < maxSpeed)
+        
+        if (moveDirection != Vector2.zero)
         {
+            
             rb.AddForce(moveDirection * thrustForce);
+            //float rightTriggerValue = InputSystem.GetDevice<Gamepad>().rightTrigger.ReadValue();
+            Gamepad gamepad = InputSystem.GetDevice<Gamepad>();
+            if (gamepad != null)
+            {
+                float leftTriggerValue = InputSystem.GetDevice<Gamepad>().leftTrigger.ReadValue();
+                if(leftTriggerValue != 0f) 
+                {
+                    rb.AddForce(moveDirection * (thrustForce + fullSpeedForce));
+                }
+            }
+
             
             if (Input.GetButton("fullSpeed"))
             {
                 rb.AddForce(moveDirection * (thrustForce + fullSpeedForce));
 
-               
             }
-        }
-        else if (rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-            
-
-        }
-        else
-        {
-            rb.AddForce(moveDirection * thrustForce);
-
+            if (rb.velocity.magnitude > speedLimiter)
+            {
+                rb.velocity = rb.velocity.normalized * speedLimiter;
+                //Debug.Log(rb.velocity.magnitude);
+            }
         }
 
     }
