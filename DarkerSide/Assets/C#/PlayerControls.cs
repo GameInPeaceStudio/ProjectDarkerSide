@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControls : MonoBehaviour
 {
     // Döneceğimiz hız
     public float rotationSpeed = 5f;

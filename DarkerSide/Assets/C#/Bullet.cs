@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public float damageAmount = 20f;
+    // Start is called before the first frame update
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
+        HealtDamage bot = collision.gameObject.GetComponent<HealtDamage>();
+        if (bot != null)
+        {
+            // Düşmanın canını azalt
+            bot.TakeDamage(damageAmount);
+
+            // Mermiyi yok et
+            Destroy(gameObject);
+        }
     }
 }

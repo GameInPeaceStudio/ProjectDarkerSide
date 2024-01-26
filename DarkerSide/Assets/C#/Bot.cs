@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -8,6 +9,11 @@ public class Bot : MonoBehaviour
     private Transform player;
     public float speedLimiter=150;
     public float addForce = 5f;
+
+    public float BotDealDamage = 10f;
+    private bool canDealDamage = true;
+    public float damageCooldown = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,5 +48,28 @@ public class Bot : MonoBehaviour
             
         }
     }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (canDealDamage)
+        {
+            PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
+            if (player != null)
+            {
+                
+                player.TakeDamage(BotDealDamage);
+                StartCoroutine(DamageCooldown());
+            }
+        }
+        
+    }
+
+    public IEnumerator DamageCooldown()
+    {
+        canDealDamage = false;
+        yield return new WaitForSeconds(damageCooldown);
+        canDealDamage = true;
+    }
+
+
 
 }
