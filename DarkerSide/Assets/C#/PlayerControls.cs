@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
@@ -11,9 +10,8 @@ public class PlayerControls : MonoBehaviour
     public float speedLimiter = 5f;
     public float dashDistance = 50f;
 
-    bool isMoving = false;
-
     private Rigidbody2D rb;
+    public bool isRotating=false;
 
     
 
@@ -65,19 +63,21 @@ public class PlayerControls : MonoBehaviour
             float rotation = Mathf.LerpAngle(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
             rb.SetRotation(rotation);
-            rb.angularVelocity = 0f;
 
-            isMoving = true;
-           
+            rb.angularVelocity = 0f;  
+            isRotating = true;
+                
         }
         else
         {
-            if (isMoving)
+            
+            if (isRotating)
             {
                 rb.angularVelocity = 0f;
-                isMoving = false;
+                isRotating = false;
 
             }
+            
         }
 
     }
