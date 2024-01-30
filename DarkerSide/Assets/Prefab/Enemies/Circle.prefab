@@ -101,8 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5981906110390652676}
-  speedLimiter: 50
+  speedLimiter: 70
   addForce: 300
+  BotDealDamage: 10
+  damageCooldown: 1
 --- !u!114 &4800659489609852484
 MonoBehaviour:
   m_ObjectHideFlags: 0
