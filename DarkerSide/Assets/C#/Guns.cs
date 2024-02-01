@@ -94,7 +94,7 @@ public class Guns : MonoBehaviour
             else
             {
                
-                Debug.Log("Reloading");
+                //Debug.Log("Reloading");
 
                 StartCoroutine(ReloadCooldown());
 

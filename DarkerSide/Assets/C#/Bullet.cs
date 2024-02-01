@@ -6,7 +6,13 @@ public class Bullet : MonoBehaviour
 {
 
     public float damageAmount = 20f;
-    // Start is called before the first frame update
+    public float destroyAfterSecond = 2f;
+
+    private void Start()
+    {
+        
+        StartCoroutine(DestroyAfterSeconds());
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         HealtDamage bot = collision.gameObject.GetComponent<HealtDamage>();
@@ -19,4 +25,12 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    IEnumerator DestroyAfterSeconds()
+    {
+        yield return new WaitForSeconds(destroyAfterSecond);
+        Destroy(gameObject);
+    }
+
+
 }
