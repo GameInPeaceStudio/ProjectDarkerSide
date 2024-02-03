@@ -642,8 +642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420645316e6fe544ba4dc0491a36e04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWaves: 20
-  waveDuration: 5
+  maxWaves: 3
+  waveDuration: 20
   countdownText: {fileID: 815538460}
 --- !u!4 &749483733
 Transform:
@@ -1992,7 +1992,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 973444577, guid: ae839d22333495c4491198003fc00dec, type: 3}
       propertyPath: fireRate
-      value: 1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 973444577, guid: ae839d22333495c4491198003fc00dec, type: 3}
       propertyPath: bulletSpeed
@@ -2085,7 +2085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981906110390652672, guid: 3b31b0f1290c3384e818c87ca1c30551, type: 3}
       propertyPath: speedLimiter
-      value: 200
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 5981906110390652675, guid: 3b31b0f1290c3384e818c87ca1c30551, type: 3}
       propertyPath: m_Name
@@ -2093,11 +2093,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981906110390652675, guid: 3b31b0f1290c3384e818c87ca1c30551, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5981906110390652676, guid: 3b31b0f1290c3384e818c87ca1c30551, type: 3}
       propertyPath: m_Mass
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5981906110390652678, guid: 3b31b0f1290c3384e818c87ca1c30551, type: 3}
       propertyPath: m_RootOrder

@@ -24,7 +24,7 @@ public class Guns : MonoBehaviour
     {
         Bulletrb = GetComponent<Rigidbody2D>();
         currentBullet = maxBullet;
-        Debug.Log("Bullet: " + currentBullet);
+       // Debug.Log("Bullet: " + currentBullet);
     }
     void Update()
     {
@@ -118,7 +118,7 @@ public class Guns : MonoBehaviour
 
         currentBullet = maxBullet;
 
-        Debug.Log("Reloaded");
+       // Debug.Log("Reloaded");
     }
 
     void SpawnBullet()
@@ -132,6 +132,6 @@ public class Guns : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
 
         currentBullet--;
-        Debug.Log("Bullet: " + currentBullet);
+       // Debug.Log("Bullet: " + currentBullet);
     }
 }

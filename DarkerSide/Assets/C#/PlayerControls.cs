@@ -10,13 +10,13 @@ public class PlayerControls : MonoBehaviour
     public float speedLimiter = 5f;
     public float dashDistance = 50f;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public bool isRotating=false;
 
     
 
 
-    private void Start()
+    public void Start()
     {
         rb = GetComponent<Rigidbody2D>(); 
     }

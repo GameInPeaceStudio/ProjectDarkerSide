@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-    public int maxWaves = 20;
+    public int maxWaves = 3;
     public float waveDuration = 21f;
     //public string nextSceneName = "NextScene";
 
@@ -19,8 +19,10 @@ public class WaveManager : MonoBehaviour
     }
     IEnumerator StartWaves()
     {
-        while (currentWave < maxWaves)
+        while (currentWave <= maxWaves)
         {
+            countdownText.color = Color.white;
+
             countdownText.text = "Wave " + currentWave ; // I must delete or change that text after 2 second
             yield return new WaitForSeconds(2);
             countdownText.text = "Battle Started!!!";
@@ -38,6 +40,14 @@ public class WaveManager : MonoBehaviour
                 countdownText.text = "" + Mathf.Floor(timer);
                 
                 timer -= Time.deltaTime;
+                if(timer<=5f)
+                {
+                    countdownText.color = Color.red;
+                }
+                else
+                {
+                    countdownText.color = Color.white;
+                }
             }
 
             ComplateWave();
@@ -50,7 +60,7 @@ public class WaveManager : MonoBehaviour
     void StartWave()
     {
         waveDuration = waveDuration+(currentWave-1)*5; // add more 5 second for the next wave
-        Debug.Log("Wave " + currentWave + " started!");
+       // Debug.Log("Wave " + currentWave + " started!");
         
         
 
@@ -58,8 +68,18 @@ public class WaveManager : MonoBehaviour
     void ComplateWave()
     {
         currentWave++;
-      
-       // Debug.Log("Wave " + currentWave + " ended!");
+        // Debug.Log("Wave " + currentWave + " ended!");
+        if (currentWave <= maxWaves)
+        {
+            ChoosePover();
+        }
+        
+
+    }
+
+    void ChoosePover()
+    {
+        Debug.Log("ChoosePover");
     }
 
 
