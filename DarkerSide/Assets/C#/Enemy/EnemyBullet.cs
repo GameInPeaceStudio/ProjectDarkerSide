@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
 
     public float damageAmount = 20f;
     public float destroyAfterSecond = 2f;
     
+    
 
-   
+
     private void Start()
     {
-        
+
         StartCoroutine(DestroyAfterSeconds());
     }
 
@@ -24,15 +25,14 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        HealtDamage bot = collision.gameObject.GetComponent<HealtDamage>();// bot objesine bagli script
+        PlayerHealth Player = collision.gameObject.GetComponent<PlayerHealth>();// player objesine bagli script
 
 
-        if (bot != null)
+        if (Player != null)
         {
-           
-            bot.TakeDamage(damageAmount);
 
-         
+            Player.TakeDamage(damageAmount);
+
         }
     }
 
