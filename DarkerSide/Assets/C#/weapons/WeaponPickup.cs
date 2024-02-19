@@ -13,7 +13,7 @@ public class WeaponPickup : MonoBehaviour
 
     void Start()
     {
-        weapons[0].SetActive(true);
+        //weapons[0].SetActive(true);
     }
 
     

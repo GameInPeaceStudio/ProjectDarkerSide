@@ -88,7 +88,7 @@ public class PlayerControls : MonoBehaviour
         if (moveDirection != Vector2.zero)
         {
             
-            rb.AddForce(moveDirection * thrustForce);
+           // rb.AddForce(moveDirection * thrustForce);
             //float rightTriggerValue = InputSystem.GetDevice<Gamepad>().rightTrigger.ReadValue();
             Gamepad gamepad = InputSystem.GetDevice<Gamepad>();
             if (gamepad != null)
