@@ -242,7 +242,7 @@ MonoBehaviour:
   fullSpeedForce: 150
   speedLimiter: 150
   dashDistance: 100
-  rb: {fileID: 0}
+  rb: {fileID: 529629617748355169}
   isRotating: 0
 --- !u!114 &8771671003198297936
 MonoBehaviour:

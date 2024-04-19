@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 726293400}
     - target: {fileID: 2234886869128660756, guid: 52f482f49df10e84cac2d06cdc2ff9cc, type: 3}
       propertyPath: fireRate
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2234886869757132389, guid: 52f482f49df10e84cac2d06cdc2ff9cc, type: 3}
       propertyPath: m_RootOrder
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749483731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 420645316e6fe544ba4dc0491a36e04c, type: 3}
   m_Name: 
@@ -1267,7 +1267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &815538459
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2600,11 +2600,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981906110390652675, guid: 3b31b0f1290c3384e818c87ca1c30551, type: 3}
       propertyPath: m_Name
-      value: DogFight
+      value: EnemyBot
       objectReference: {fileID: 0}
     - target: {fileID: 5981906110390652675, guid: 3b31b0f1290c3384e818c87ca1c30551, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5981906110390652676, guid: 3b31b0f1290c3384e818c87ca1c30551, type: 3}
       propertyPath: m_Mass
