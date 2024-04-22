@@ -145,11 +145,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6458186645278304151}
   - component: {fileID: 7463802657134210177}
-  - component: {fileID: 2113523947315262071}
   - component: {fileID: -6086989620664333733}
   - component: {fileID: 718948754615443248}
+  - component: {fileID: 1751498308970644639}
   m_Layer: 0
-  m_Name: Square
+  m_Name: DoubleGunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,8 +163,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6298427438210360965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.75, y: -609.079, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 24.75, y: -610.5, z: 0}
+  m_LocalScale: {x: 4.7565, y: 4.7565, z: 4.7565}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8844872065252756269}
@@ -224,20 +224,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2113523947315262071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6298427438210360965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da3b8def93195aa418de144b62aadcf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 20
-  destroyAfterSecond: 2
 --- !u!50 &-6086989620664333733
 Rigidbody2D:
   serializedVersion: 4
@@ -285,6 +271,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1751498308970644639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6298427438210360965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421ca06db7a219e4ca4efab56bead494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 20
+  destroyAfterSecond: 2
 --- !u!1 &6339937505162719877
 GameObject:
   m_ObjectHideFlags: 0

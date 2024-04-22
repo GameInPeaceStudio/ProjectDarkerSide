@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 4298934631852636934}
   - component: {fileID: 2441945225927166198}
   m_Layer: 0
-  m_Name: DoubleBullet
+  m_Name: DoubleGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

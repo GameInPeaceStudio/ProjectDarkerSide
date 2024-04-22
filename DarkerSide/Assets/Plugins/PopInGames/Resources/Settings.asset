@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c07b45f2fbdbd1458c1a1a0572904df, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  ApiUrl: https://popingame.com/api
+  clientId: 391a0dcf6a5206b6991f42568168b8a9
+  clientSecret: 46e77e9e1341c86007eae0715fe0b1d2
+  gameId: 63
+  blockingLayers: 1
+  refreshFlag: 1
+  refreshTime: 10
