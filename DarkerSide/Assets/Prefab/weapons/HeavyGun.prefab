@@ -184,8 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
-  bulletSpeed: 100
-  fireRate: 1
+  bulletSpeed: 120
+  fireRate: 3
   lastFireTime: 0
   maxBullet: 10
   reloadCooldownTime: 3

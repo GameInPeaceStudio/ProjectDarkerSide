@@ -73,17 +73,17 @@ namespace PopInGames
 
                 if (srpType.Contains("HDRenderPipelineAsset"))
                 {
-                    Debug.Log("1");
+                    
                     return Shader.Find("HDRP/Lit");
                 }
                 if (srpType.Contains("UniversalRenderPipelineAsset"))
                 {
-                    Debug.Log("2");
+                    
                     return Shader.Find("Universal Render Pipeline/Lit");
                 }
                 if (srpType.Contains("LightweightRenderPipelineAsset"))
                 {
-                    Debug.Log("3");
+                    
                     return Shader.Find("Lightweight Render Pipeline/Lit");
                 }
 
@@ -91,13 +91,13 @@ namespace PopInGames
 
             if (No_Shadows==true)
             {
-                Debug.Log("No Shadow");
+                
                 return Shader.Find("Unlit/Texture");
                 
             }
             else
             {
-                Debug.Log("Shadows On");
+                
                 return Shader.Find("Standard");
             }
 

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84624a93fc449bd81bc3bada22d2b81, type: 3}
   m_Name: AdSettings_SampleScene
   m_EditorClassIdentifier: 
-  enabled: 0
+  enabled: 1
   levelId: 0
