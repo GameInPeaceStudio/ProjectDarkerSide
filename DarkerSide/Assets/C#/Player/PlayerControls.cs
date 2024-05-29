@@ -7,9 +7,10 @@ public class PlayerControls : MonoBehaviour
     public float rotationSpeed = 5f;
     public float thrustForce = 1f;
     public float fullSpeedForce = 1f;
-    public float speedLimiter = 5f;
+    public float SpeedLimiterMaxValue = 150f;
+    public float SpeedLimiterMinValue = 100f;
     public float dashDistance = 50f;
-
+    public float leftTriggerBoost = 150f;
     public Rigidbody2D rb;
     public bool isRotating=false;
 
@@ -45,8 +46,8 @@ public class PlayerControls : MonoBehaviour
         
         if (moveDirection != Vector2.zero)
         {
+
             RotateCharacter(moveDirection);
-            
             AddForce(moveDirection);
         }
 
@@ -87,8 +88,7 @@ public class PlayerControls : MonoBehaviour
         
         if (moveDirection != Vector2.zero)
         {
-            
-           // rb.AddForce(moveDirection * thrustForce);
+            rb.AddForce(moveDirection * (thrustForce));
             //float rightTriggerValue = InputSystem.GetDevice<Gamepad>().rightTrigger.ReadValue();
             Gamepad gamepad = InputSystem.GetDevice<Gamepad>();
             if (gamepad != null)
@@ -96,7 +96,13 @@ public class PlayerControls : MonoBehaviour
                 float leftTriggerValue = InputSystem.GetDevice<Gamepad>().leftTrigger.ReadValue();
                 if(leftTriggerValue != 0f) 
                 {
+                    SpeedLimiterMaxValue = leftTriggerBoost;
                     rb.AddForce(moveDirection * (thrustForce + fullSpeedForce));
+                    
+                }
+                else
+                {
+                    SpeedLimiterMaxValue = SpeedLimiterMinValue;
                 }
             }
 
@@ -106,10 +112,10 @@ public class PlayerControls : MonoBehaviour
                 rb.AddForce(moveDirection * (thrustForce + fullSpeedForce));
 
             }
-            if (rb.velocity.magnitude > speedLimiter)
+            if (rb.velocity.magnitude > SpeedLimiterMaxValue)
             {
-                rb.velocity = rb.velocity.normalized * speedLimiter;
-                //Debug.Log(rb.velocity.magnitude);
+                rb.velocity = rb.velocity.normalized * SpeedLimiterMaxValue;
+                Debug.Log(rb.velocity.magnitude);
             }
         }
 
@@ -124,8 +130,14 @@ public class PlayerControls : MonoBehaviour
             Debug.Log("Dash");
         }
     }
-  
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("LandingArea"))
+        {
+            Debug.Log("landing");
+        }
+    }
 }
 
 
